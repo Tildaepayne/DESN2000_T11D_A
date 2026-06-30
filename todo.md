@@ -3,7 +3,8 @@
 - [ ] Doorbell 
     - [ ] Plays music + music selection 
     - [ ] Volume control 
-    - [ ] Do not disturb mode 
+    - [ ] Do not disturb mode
+    - [ ] Disco mode (flashing lights)
 
 - [ ] Morning + evening procedure 
     - [ ] Coffee machine 
@@ -14,4 +15,4 @@
         - [ ] Open & close at certain times 
     - [ ] Lights 
         - [ ] Control remotely (override) 
-        - [ ] Dim/turn off/turn on at certain times 
+        - [ ] Dim/turn off/turn on at certain times
