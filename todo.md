@@ -13,5 +13,3 @@
         - [] Control remotely (override) 
         - [] Open & close at certain times 
     - [] Lights 
-        - [] Control remotely (override) 
-        - [] Dim/turn off/turn on at certain times 

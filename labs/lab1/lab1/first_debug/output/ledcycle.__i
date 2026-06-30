@@ -1,0 +1,1 @@
+-c --cpu ARM7TDMI -D__EVAL -D__MICROLIB -g -O0 -I "C:\Program Files (x86)\Keil\ARM\RV31\Inc" -I "C:\Program Files (x86)\Keil\ARM\CMSIS\Include" -I "C:\Program Files (x86)\Keil\ARM\Inc\Philips" -o ".\output\ledcycle.o" --omf_browse ".\output\ledcycle.crf" --depend ".\output\ledcycle.d" "src\LEDCycle.c"

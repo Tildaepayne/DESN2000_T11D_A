@@ -1,0 +1,18 @@
+*** Creating Trace Output File '.\output\ldr_pseudo.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\output\lpc2400.o"'
+### List of Objects: adding '".\output\startup.o"'
+### List of Objects: adding '".\output\ldr_pseudo.o"'
+### ADS-LD Command completed:
+--cpu ARM7TDMI ".\output\lpc2400.o" ".\output\startup.o" ".\output\ldr_pseudo.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x40000000 --strict --first=LPC2400.o(RESET) --bestdebug --arm_only --summary_stderr --info summarysizes -o ".\output\ldr_pseudo.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\output\ldr_pseudo.axf'
+### ADS-LD Command File: '.\output\ldr_pseudo.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\output\ldr_pseudo.lnp', Handle=0x00000F88
+### Writing '.lnp' file
+### ADS-LD Command file '.\output\ldr_pseudo.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

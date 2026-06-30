@@ -1,0 +1,4 @@
+Dependencies for Project 'trace', Target 'QVGA Base Board': (DO NOT MODIFY !)
+F (.\src\LPC2400.s)(0x6A30F648)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --diag_suppress 1608,6314 -I "C:\Program Files (x86)\Keil\ARM\RV31\Inc" -I "C:\Program Files (x86)\Keil\ARM\CMSIS\Include" -I "C:\Program Files (x86)\Keil\ARM\Inc\Philips" -o ".\output\LPC2400.o" --depend ".\output\LPC2400.d")
+F (.\src\startup.c)(0x6A30F648)(-c --cpu ARM7TDMI -D__EVAL -g -O0 -I "C:\Program Files (x86)\Keil\ARM\RV31\Inc" -I "C:\Program Files (x86)\Keil\ARM\CMSIS\Include" -I "C:\Program Files (x86)\Keil\ARM\Inc\Philips" -o ".\output\startup.o" --omf_browse ".\output\startup.crf" --depend ".\output\startup.d")
+F (.\src\trace.s)(0x6A30F648)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --diag_suppress 1608,6314 -I "C:\Program Files (x86)\Keil\ARM\RV31\Inc" -I "C:\Program Files (x86)\Keil\ARM\CMSIS\Include" -I "C:\Program Files (x86)\Keil\ARM\Inc\Philips" -o ".\output\trace.o" --depend ".\output\trace.d")

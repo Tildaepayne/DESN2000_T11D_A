@@ -1,0 +1,1 @@
+--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --diag_suppress 1608,6314 -I "C:\Program Files (x86)\Keil\ARM\RV31\Inc" -I "C:\Program Files (x86)\Keil\ARM\CMSIS\Include" -I "C:\Program Files (x86)\Keil\ARM\Inc\Philips" -o ".\output\array_add.o" --depend ".\output\array_add.d" "src\array_add.s"

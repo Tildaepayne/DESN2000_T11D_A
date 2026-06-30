@@ -1,0 +1,1 @@
+--cpu ARM7TDMI --pd "__EVAL SETA 1" -g -I "C:\Program Files (x86)\Keil\ARM\RV31\Inc" -I "C:\Program Files (x86)\Keil\ARM\CMSIS\Include" -I "C:\Program Files (x86)\Keil\ARM\Inc\Philips" -o ".\output\gcd.o" --depend ".\output\gcd.d" "src\gcd.s"
