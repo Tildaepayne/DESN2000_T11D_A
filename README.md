@@ -15,16 +15,17 @@ Files:
 ```
                                          main.c
                                             |
-                --------------------------------------------------------
-                |                 |                   |                 |       
-SEGEMENTS:   morning           evening             disco/            heater/
+                --------------------------------------------------------------------------
+                |                 |                   |                 |                 |       
+SEGEMENTS:   morning           evening             disco/            heater/           display
              routine           routine             doorbell          cooler
-                |                 |                    |                |
-            -coffee           -idle mode         -music/leds         -leds
+                |                 |                    |                |                 |
+            -coffee           -idle mode         -music/leds         -leds             -QVGA display
             -blind operation  -blind operation   
-                 |                      |              |                |
-INPUT:     light sensor           light sensor      button            dial
-
+                 |                      |              |                |                 |
+INPUT:     light sensor           light sensor      button            dial               dial
+                                                                                       SEGMENTS
+ 
 HELPER: 
 - LED operation
 - blind operation
