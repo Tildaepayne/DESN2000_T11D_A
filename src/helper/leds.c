@@ -17,5 +17,7 @@ leds:
  - heating and cooling (red = heating, blue = cooling)
  - blinds: red(closed), blue(open), yellow(half)
  - coffee machine: red(off), blue(on)
+ - do not disturb: red(off), green(on)
+ - doorbell: red(off), white(on)
 */
 ////////////////////////////////////////////////////////////////////////////////
