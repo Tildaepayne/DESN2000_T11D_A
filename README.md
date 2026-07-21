@@ -12,7 +12,7 @@ Coded modules:
 - Temperature display
 
 Files: 
-'''
+```
                                          main.c
                                             |
                 --------------------------------------------------------
@@ -29,5 +29,5 @@ HELPER:
 - LED operation
 - blind operation
 
-'''
+```
 
