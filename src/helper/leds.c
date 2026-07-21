@@ -13,5 +13,9 @@ DEPENDENTS:
             - morning_routine.c
                          |
                        display.c
+leds:
+ - heating and cooling (red = heating, blue = cooling)
+ - blinds: red(closed), blue(open), yellow(half)
+ - coffee machine: red(off), blue(on)
 */
 ////////////////////////////////////////////////////////////////////////////////

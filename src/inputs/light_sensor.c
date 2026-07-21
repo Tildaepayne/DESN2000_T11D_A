@@ -15,7 +15,7 @@ DEPENDENTS:
                          |
                        display.c
 LUX_SCALE:
-    - 0-300: No action
+    - 0-300: triggers do_not_disturb
     - 300-400: triggers morning_routine or evening_routine
     - >10,000: triggers half-blind
 */
