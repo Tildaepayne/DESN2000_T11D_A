@@ -10,3 +10,22 @@ Coded modules:
   - Light Sensors
   - Do not disturb
 - Temperature display
+
+Files: 
+
+                                         main.c
+                                            |
+                --------------------------------------------------------
+                |                 |                   |                 |       
+SEGEMENTS:   morning           evening             disco/            heater/
+             routine           routine             doorbell          cooler
+                |                 |                    |                |
+            -coffee           -idle mode         -music/leds         -leds
+            -blind operation  -blind operation   
+                 |                      |              |                |
+INPUT:     light sensor           light sensor      button            dial
+
+HELPER: 
+- LED operation
+- blind operation
+
