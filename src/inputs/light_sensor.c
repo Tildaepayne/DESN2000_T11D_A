@@ -15,8 +15,8 @@ DEPENDENTS:
                          |
                        display.c
 LUX_SCALE:
-    - 0-300: triggers do_not_disturb
-    - 300-400: triggers morning_routine or evening_routine
-    - >10,000: triggers half-blind
+    - 0-50: triggers do_not_disturb
+    - 51-300: triggers morning_routine or evening_routine
+    - >300: triggers half-blind
 */
 ////////////////////////////////////////////////////////////////////////////////
