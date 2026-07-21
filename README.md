@@ -12,7 +12,7 @@ Coded modules:
 - Temperature display
 
 Files: 
-
+'''
                                          main.c
                                             |
                 --------------------------------------------------------
@@ -28,4 +28,6 @@ INPUT:     light sensor           light sensor      button            dial
 HELPER: 
 - LED operation
 - blind operation
+
+'''
 
