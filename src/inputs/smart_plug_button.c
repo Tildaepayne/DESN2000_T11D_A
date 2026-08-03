@@ -1,38 +1,38 @@
 #include "../lpc24xx.h"
 #include "../config.h"
-#include "doorbell_button.h"
+#include "smart_plug_button.h"
 
-#define DOORBELL_BUTTON 0x00000400
+#define SMART_PLUG_BUTTON 0x00000800
 
 static unsigned int previous_button_state;
 static unsigned int accepted_press_exists;
 static unsigned long last_accepted_press_ms;
 
-void doorbell_button_init(void)
+void smart_plug_button_init(void)
 {
-    /* P0.10 is GPIO input. Lab 6 uses the legacy Port 0 registers. */
-    PINSEL0 &= 0xFFCFFFFF;
-    IODIR0 &= 0xFFFFFBFF;
-    previous_button_state = doorbell_button_read();
+    /* P0.11 is GPIO input. */
+    PINSEL0 &= 0xFF3FFFFF;
+    IODIR0 &= 0xFFFFF7FF;
+    previous_button_state = smart_plug_button_read();
     accepted_press_exists = 0U;
     last_accepted_press_ms = 0U;
 }
 
-unsigned int doorbell_button_read(void)
+unsigned int smart_plug_button_read(void)
 {
-    if ((IOPIN0 & DOORBELL_BUTTON) != 0) {
+    if ((IOPIN0 & SMART_PLUG_BUTTON) != 0) {
         return 1U;
     }
 
     return 0U;
 }
 
-unsigned int doorbell_button_pressed_edge(unsigned long now_ms)
+unsigned int smart_plug_button_pressed_edge(unsigned long now_ms)
 {
     unsigned int current_button_state;
     unsigned int pressed_edge;
 
-    current_button_state = doorbell_button_read();
+    current_button_state = smart_plug_button_read();
     pressed_edge = 0U;
 
     if ((current_button_state != 0U) &&

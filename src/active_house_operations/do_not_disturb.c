@@ -1,17 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-/*
-COURSE: DESN2000
-GROUP: T11D_A
-FUNCTION: do_not_disturb.c
-PURPOSE: This file implements the do not disturb functionality.
-DEPENDENTS:
-    (light_sensor.c -> blinds)
-                          |
-                   - do_not_disturb.c
-                               |
-                              display.c
-*/
-////////////////////////////////////////////////////////////////////////////////
+#include "do_not_disturb.h"
 
-#include "../lpc24xx.h"
-#include "../main.h"
+void do_not_disturb_toggle(app_state_t *state)
+{
+    if (state->dnd_on == 0U) {
+        state->dnd_on = 1U;
+    } else {
+        state->dnd_on = 0U;
+    }
+}
+
+unsigned int do_not_disturb_allows_chime(const app_state_t *state)
+{
+    if (state->dnd_on == 0U) {
+        return 1U;
+    }
+
+    return 0U;
+}

@@ -1,17 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-/*
-COURSE: DESN2000
-GROUP: T11D_A
-FUNCTION: morning_routine.c
-PURPOSE: This file implements the morning routine.
-DEPENDENTS:
-    (light_sensor.c -> blinds)
-                          |
-                   - morning_routine.c
-                               |
-                              display.c
-*/
-////////////////////////////////////////////////////////////////////////////////
+#include "morning_routine.h"
 
-#include "../lpc24xx.h"
-#include "../main.h"
+void morning_routine_apply(app_state_t *state)
+{
+    if (state->smart_plug_manual == 0U) {
+        state->smart_plug_on = 1U;
+    }
+
+    state->house_lights_on = 0U;
+}

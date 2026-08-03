@@ -1,15 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////
-/*
-COURSE: DESN2000
-GROUP: T11D_A
-FUNCTION: main.h
-PURPOSE: This file contains function prototypes for the main.c file.
-DEPENDENTS:
-        - main.c
-*/
-////////////////////////////////////////////////////////////////////////////////
+#ifndef DESN2000_MAIN_H
+#define DESN2000_MAIN_H
 
-//////// FUNCTIONS WHICH MALLOC, HELP CREATE////////////////////////////////////
+/* The application entry point is in src/main.c. */
 
-
-//////// FUNCTIONS WHICH MALLOC, HELP CREATE////////////////////////////////////
+#endif
