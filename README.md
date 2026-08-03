@@ -223,7 +223,6 @@ The full event, including LCD recovery, blocks the main polling loop for about f
 | [`src/active_house_operations/`](src/active_house_operations/) | Display, routines, DND, HVAC and Disco |
 | [`src/lcd/`](src/lcd/) | Reused Lab 6 LCD, graphics and SDRAM support |
 | [`evidence/`](evidence/) | Build and test records |
-| [`light_sensor_step_test/`](light_sensor_step_test/) | Standalone NyanSim AD0.1 test project |
 
 ## Lab code used
 
