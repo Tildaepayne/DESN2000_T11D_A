@@ -23,10 +23,10 @@
  * Typedefs and defines
  *****************************************************************************/
 
-#define ACTIVATE_CS   IOCLR0 = 0x10000
-#define DEACTIVATE_CS IOSET0 = 0x10000
-#define SET_RS        IOSET0 = 0x80000
-#define RESET_RS      IOCLR0 = 0x80000
+#define ACTIVATE_CS   FIO0CLR = 0x10000
+#define DEACTIVATE_CS FIO0SET = 0x10000
+#define SET_RS        FIO0SET = 0x80000
+#define RESET_RS      FIO0CLR = 0x80000
 
 /******************************************************************************
  * Implementation of local functions
@@ -123,8 +123,8 @@ lcd_hw_init(void)
   PINSEL0 |= 0xc0000000;
   PINSEL1 |= 0x0000003c;
 
-  IODIR0  |= 0x90000;
-  IOSET0   = 0x90000;
+  FIO0DIR  |= 0x90000;
+  FIO0SET   = 0x90000;
 
   S0SPCCR = 8;    
   S0SPCR  = 0x38;

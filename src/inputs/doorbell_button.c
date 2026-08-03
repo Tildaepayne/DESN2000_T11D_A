@@ -10,9 +10,9 @@ static unsigned long last_accepted_press_ms;
 
 void doorbell_button_init(void)
 {
-    /* P0.10 is GPIO input. Lab 6 uses the legacy Port 0 registers. */
+    /* P0.10 is a Fast GPIO input, matching the Lab 4/NyanSim interface. */
     PINSEL0 &= 0xFFCFFFFF;
-    IODIR0 &= 0xFFFFFBFF;
+    FIO0DIR &= 0xFFFFFBFF;
     previous_button_state = doorbell_button_read();
     accepted_press_exists = 0U;
     last_accepted_press_ms = 0U;
@@ -20,7 +20,7 @@ void doorbell_button_init(void)
 
 unsigned int doorbell_button_read(void)
 {
-    if ((IOPIN0 & DOORBELL_BUTTON) != 0) {
+    if ((FIO0PIN & DOORBELL_BUTTON) != 0) {
         return 1U;
     }
 

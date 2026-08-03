@@ -1591,11 +1591,10 @@ FIO3_MASK		EQU 0x003F0000
 daughterboard_init
 				;Use FIO for GPIO ports 0 and 1 instead of legacy interface.
 				;GPIOM=1, bit 0 in SCS.
-				;LDR r0, =SCS
-				;LDR r1, [r0]
-				;ORR r1, #1
-				;STR r1, [r0]
-				;Actually, LCD lib requires legacy IO. Too lazy to fix.
+				LDR r0, =SCS
+				LDR r1, [r0]
+				ORR r1, #1
+				STR r1, [r0]
 				
 				;Disable pullups on all GPIOs used on the Daughter Board.
 				;P0.10-11

@@ -121,7 +121,9 @@ static void display_button(unsigned short x0,
     lcd_fillRect(x0, y0, x1, y1, colour);
     lcd_drawRect(x0, y0, x1, y1, BLACK);
     lcd_fontColor(BLACK, colour);
-    lcd_putString((unsigned short)(x0 + 8U), (unsigned short)(y0 + 12U), label);
+    lcd_putString((unsigned short)(x0 + 8U),
+                  (unsigned short)(y0 + 12U),
+                  label);
     lcd_fontColor(BLACK, WHITE);
 }
 
@@ -212,7 +214,10 @@ void display_render(const app_state_t *state)
 void display_recover_after_disco(const app_state_t *state)
 {
     /*
-     SDRAM is already initialized, so do not reset it here.
+     * Disco mode temporarily uses the LCD data pins for the LED ladder.
+     * Restoring PINSEL and LCD_CTRL alone does not reset the LCD panel's
+     * scan direction.  Run the Lab 6 LCD setup again, then redraw the
+     * dashboard.  SDRAM is already initialized, so do not reset it here.
      */
     lcdInit(&lcd_config);
     lcdTurnOn();

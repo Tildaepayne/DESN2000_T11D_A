@@ -34,10 +34,10 @@ static unsigned int touch_read_value(unsigned int command)
 {
     unsigned int result;
 
-    IOCLR0 = TOUCH_CS;
+    FIO0CLR = TOUCH_CS;
     touch_transfer(command);
     result = touch_transfer(0x0000);
-    IOSET0 = TOUCH_CS;
+    FIO0SET = TOUCH_CS;
 
     return result & 0x00FF;
 }
@@ -52,8 +52,8 @@ void touch_input_init(void)
 
     /* P0.20 is the active-low touchscreen chip select. */
     PINSEL1 &= 0xFFFFFCFF;
-    IODIR0 |= TOUCH_CS;
-    IOSET0 = TOUCH_CS;
+    FIO0DIR |= TOUCH_CS;
+    FIO0SET = TOUCH_CS;
 
     /* 9-bit, master, CPHA=1, CPOL=1, MSB first, no interrupt. */
     S0SPCCR = 0x24;

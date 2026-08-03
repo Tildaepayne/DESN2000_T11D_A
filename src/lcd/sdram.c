@@ -86,8 +86,8 @@ sdramInit(void)
   EMC_DYN_CFG0 = 0x00000680;
 #endif
 
-  IODIR1 |= 0x00000020;  //Make P1.5 output and power cycle SD/MMC power
-  IOSET1  = 0x00000020;  //Make P1.5 high = turn off power for SD/MMC card
+  FIO1DIR |= 0x00000020;  //Make P1.5 output and power cycle SD/MMC power
+  FIO1SET  = 0x00000020;  //Make P1.5 high = turn off power for SD/MMC card
     
   //wait 100mS
   mdelay(100);
@@ -98,7 +98,7 @@ sdramInit(void)
   //wait 200mS
   mdelay(200);
     
-  IOCLR1  = 0x00000020;  //Make P1.5 low = turn on power for SD/MMC card
+  FIO1CLR  = 0x00000020;  //Make P1.5 low = turn on power for SD/MMC card
 
   //Send command: PRECHARGE-ALL, shortest possible refresh period
   EMC_DYN_CTRL = 0x00000103;

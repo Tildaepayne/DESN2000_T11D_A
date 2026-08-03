@@ -88,8 +88,8 @@ void doorbell_disco_init(void)
 
     /* Keep the shared LED ladder disabled during normal LCD operation. */
     PINSEL1 = PINSEL1 & PINSEL1_KEEP_OTHERS;
-    IODIR0 = IODIR0 | LED_LADDER_ENABLE;
-    IOCLR0 = LED_LADDER_ENABLE;
+    FIO0DIR = FIO0DIR | LED_LADDER_ENABLE;
+    FIO0CLR = LED_LADDER_ENABLE;
 }
 
 void doorbell_disco_start(void)
@@ -104,15 +104,15 @@ void doorbell_disco_start(void)
     saved_lcd_control = LCD_CTRL;
 
     /* Stop LCD pin activity before changing its shared P2 pins to GPIO. */
-    IOCLR0 = LED_LADDER_ENABLE;
+    FIO0CLR = LED_LADDER_ENABLE;
     LCD_CTRL = saved_lcd_control & LCD_OFF_KEEP_OTHERS;
     PINSEL1 = saved_pinsel1 & PINSEL1_KEEP_OTHERS;
     PINSEL4 = saved_pinsel4 & PINSEL4_KEEP_OTHERS;
 
-    IODIR0 = IODIR0 | LED_LADDER_ENABLE;
+    FIO0DIR = FIO0DIR | LED_LADDER_ENABLE;
     FIO2DIR = FIO2DIR | LED_LADDER_ALL;
     FIO2CLR = LED_LADDER_ALL;
-    IOSET0 = LED_LADDER_ENABLE;
+    FIO0SET = LED_LADDER_ENABLE;
 
     disco_active = 1U;
     disco_current_phase = 0U;
@@ -139,7 +139,7 @@ void doorbell_disco_stop(void)
         return;
     }
 
-    IOCLR0 = LED_LADDER_ENABLE;
+    FIO0CLR = LED_LADDER_ENABLE;
     FIO2CLR = LED_LADDER_ALL;
     FIO2DIR = saved_fio2dir;
     PINSEL4 = saved_pinsel4;
