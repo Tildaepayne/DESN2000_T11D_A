@@ -72,8 +72,7 @@ unsigned int light_sensor_read_lux(void) {
     unsigned int raw;
 
     sum = 0;
-    for (i = 0; i < LS_AVG_SAMPLES; i++)
-    {
+    for (i = 0; i < LS_AVG_SAMPLES; i++) {
         sum += light_sensor_read_raw();
     }
     raw = sum / LS_AVG_SAMPLES;
