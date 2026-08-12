@@ -38,8 +38,7 @@ LUX_SCALE:
 #define LUX_FULL_SCALE     660
 #define LS_AVG_SAMPLES     8
 
-void light_sensor_init(void)
-{
+void light_sensor_init(void) {
     PCONP |= PCONP_PCADC;
 
     PINSEL1 &= ~PINSEL1_AD01_MASK;
@@ -51,16 +50,14 @@ void light_sensor_init(void)
     AD0CR = AD0CR_SEL_CH1 | AD0CR_CLKDIV | AD0CR_PDN;
 }
 
-unsigned int light_sensor_read_raw(void)
-{
+unsigned int light_sensor_read_raw(void) {
     unsigned int result;
 
     AD0CR &= ~AD0CR_START_MASK;
     AD0CR |= AD0CR_START_NOW;
 
     result = AD0DR1;
-    while ((result & AD0DR_DONE) == 0)
-    {
+    while ((result & AD0DR_DONE) == 0) {
         result = AD0DR1;
     }
 
@@ -69,8 +66,7 @@ unsigned int light_sensor_read_raw(void)
     return (result >> 6) & 0x3FF; 
 }
 
-unsigned int light_sensor_read_lux(void)
-{
+unsigned int light_sensor_read_lux(void) {
     unsigned int   sum;
     unsigned int i;
     unsigned int raw;
@@ -86,25 +82,20 @@ unsigned int light_sensor_read_lux(void)
 }
 
 // call this if you want light sensor band
-unsigned int light_sensor_get_band(void)
-{
+unsigned int light_sensor_get_band(void) {
     unsigned int lux;
     unsigned int band;
 
     lux = light_sensor_read_lux();
 
-    if (lux <= 50)
-    {
+    if (lux <= 50) {
         band = 0;
     }
-    else if (lux <= 300)
-    {
+    else if (lux <= 300) {
         band = 1;
     }
-    else
-    {
+    else {
         band = 2;
     }
-
     return band;
 }  
