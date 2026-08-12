@@ -11,5 +11,7 @@ void evening_routine_apply(app_state_t *state)
         state->blind_2 = BLIND_DOWN;
     }
 
-    state->house_lights_on = 1U;
+    if (state->house_lights_manual == 0U) {
+        state->house_lights_on = 1U;
+    }
 }

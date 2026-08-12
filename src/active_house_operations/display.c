@@ -156,7 +156,7 @@ static void display_draw_static(void)
     display_button(0, 285, 118, 319,
                    (unsigned char *)"DND", MAGENTA);
     display_button(120, 285, 239, 319,
-                   (unsigned char *)"LIGHT TEST", GREEN);
+                   (unsigned char *)"HOUSE LIGHT", GREEN);
 }
 
 static void display_clear_dynamic_fields(void)

@@ -32,7 +32,7 @@ typedef enum {
     TOUCH_BLINDS,
     TOUCH_RETURN_AUTO,
     TOUCH_DND,
-    TOUCH_LIGHT_TEST
+    TOUCH_HOUSE_LIGHTS
 } touch_command_t;
 
 typedef struct {
@@ -49,6 +49,7 @@ typedef struct {
     unsigned int smart_plug_on;
     unsigned int smart_plug_manual;
     unsigned int house_lights_on;
+    unsigned int house_lights_manual;
     unsigned int dnd_on;
     unsigned int doorbell_count;
     unsigned int missed_guests;

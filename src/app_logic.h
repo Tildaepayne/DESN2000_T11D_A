@@ -11,6 +11,7 @@ void app_update_sensors(app_state_t *state,
 void app_apply_automatic_control(app_state_t *state);
 void app_toggle_smart_plug(app_state_t *state);
 void app_cycle_blinds(app_state_t *state);
+void app_toggle_house_lights(app_state_t *state);
 void app_return_to_auto(app_state_t *state);
 void app_toggle_dnd(app_state_t *state);
 void app_record_doorbell(app_state_t *state);

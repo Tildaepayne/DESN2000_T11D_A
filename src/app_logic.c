@@ -43,6 +43,7 @@ void app_state_init(app_state_t *state)
     state->smart_plug_on = 0U;
     state->smart_plug_manual = 0U;
     state->house_lights_on = 0U;
+    state->house_lights_manual = 0U;
     state->dnd_on = 0U;
     state->doorbell_count = 0U;
     state->missed_guests = 0U;
@@ -92,8 +93,6 @@ void app_update_sensors(app_state_t *state,
 
 void app_apply_automatic_control(app_state_t *state)
 {
-    blind_position_t automatic_position;
-
     if (state->smart_plug_manual == 0U) {
         if (state->routine == ROUTINE_MORNING) {
             state->smart_plug_on = 1U;
@@ -105,21 +104,41 @@ void app_apply_automatic_control(app_state_t *state)
     if (state->blinds_manual == 0U) {
         if ((state->routine == ROUTINE_EVENING) ||
             (state->routine == ROUTINE_NIGHT)) {
-            automatic_position = BLIND_DOWN;
-        } else {
-            automatic_position = blinds_position_for_light(
+            /* Close both blinds at night for privacy and insulation. */
+            state->blind_1 = BLIND_DOWN;
+            state->blind_2 = BLIND_DOWN;
+        } else if ((state->routine == ROUTINE_DAY) &&
+                   (state->demo_minutes < AFTERNOON_START_MINUTES)) {
+            /*
+             * Figure 1 shows Blind 1 on the north-facing wall. Around
+             * midday it receives the stronger northern sun, so its position
+             * follows the light sensor. The west-facing Blind 2 stays open.
+             */
+            state->blind_1 = blinds_position_for_light(
                 state->light_level);
+            state->blind_2 = BLIND_UP;
+        } else if (state->routine == ROUTINE_DAY) {
+            /*
+             * In the afternoon, the west-facing Blind 2 receives the stronger
+             * sun. Blind 2 follows the light sensor and Blind 1 stays open.
+             */
+            state->blind_1 = BLIND_UP;
+            state->blind_2 = blinds_position_for_light(
+                state->light_level);
+        } else {
+            /* Morning sun is not directly aimed at either window. */
+            state->blind_1 = BLIND_UP;
+            state->blind_2 = BLIND_UP;
         }
-
-        state->blind_1 = automatic_position;
-        state->blind_2 = automatic_position;
     }
 
-    if ((state->routine == ROUTINE_EVENING) ||
-        (state->routine == ROUTINE_NIGHT)) {
-        state->house_lights_on = 1U;
-    } else {
-        state->house_lights_on = 0U;
+    if (state->house_lights_manual == 0U) {
+        if ((state->routine == ROUTINE_EVENING) ||
+            (state->routine == ROUTINE_NIGHT)) {
+            state->house_lights_on = 1U;
+        } else {
+            state->house_lights_on = 0U;
+        }
     }
 }
 
@@ -139,6 +158,17 @@ void app_cycle_blinds(app_state_t *state)
     state->blind_1 = blinds_next_position(state->blind_1);
     state->blind_2 = state->blind_1;
     state->blinds_manual = 1U;
+}
+
+void app_toggle_house_lights(app_state_t *state)
+{
+    if (state->house_lights_on == 0U) {
+        state->house_lights_on = 1U;
+    } else {
+        state->house_lights_on = 0U;
+    }
+
+    state->house_lights_manual = 1U;
 }
 
 void app_return_to_auto(app_state_t *state)

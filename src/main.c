@@ -13,6 +13,7 @@
 #include "active_house_operations/display.h"
 #include "active_house_operations/do_not_disturb.h"
 #include "active_house_operations/doorbell_disco.h"
+#include "active_house_operations/house_lights.h"
 
 static void handle_touch_command(app_state_t *state,
                                  touch_command_t command)
@@ -25,10 +26,8 @@ static void handle_touch_command(app_state_t *state,
         app_return_to_auto(state);
     } else if (command == TOUCH_DND) {
         app_toggle_dnd(state);
-    } else if (command == TOUCH_LIGHT_TEST) {
-#if LIGHT_SENSOR_SIMULATION == 1
-        light_sensor_next_simulated_level();
-#endif
+    } else if (command == TOUCH_HOUSE_LIGHTS) {
+        app_toggle_house_lights(state);
     }
 }
 
@@ -40,6 +39,7 @@ int main(void)
     unsigned long demo_minutes;
     unsigned int light_raw;
     unsigned int room_temperature_c;
+    unsigned int last_house_lights_on;
     touch_command_t touch_command;
 
     /* Initialize the Lab 6 display before the application GPIO. */
@@ -54,9 +54,11 @@ int main(void)
     timebase_init();
     blinds_init();
     doorbell_disco_init();
+    house_lights_init();
 
     app_state_init(&state);
     last_display_ms = 0U;
+    last_house_lights_on = 2U;
     blinds_show(state.blind_1, state.blind_2);
     display_render(&state);
 
@@ -94,7 +96,13 @@ int main(void)
 
         blinds_show(state.blind_1, state.blind_2);
 
-        if (touch_command == TOUCH_RETURN_AUTO) {
+        if (state.house_lights_on != last_house_lights_on) {
+            house_lights_show(state.house_lights_on);
+            last_house_lights_on = state.house_lights_on;
+        }
+
+        if ((touch_command == TOUCH_RETURN_AUTO) ||
+            (touch_command == TOUCH_HOUSE_LIGHTS)) {
             display_render(&state);
             last_display_ms = now_ms;
         }

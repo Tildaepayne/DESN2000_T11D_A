@@ -6,24 +6,25 @@
 #define TOUCH_READ_X 0x00D8
 #define TOUCH_READ_Y 0x0098
 #define TOUCH_READ_Z1 0x00B8
-#define TOUCH_POLL_LIMIT 5000U
+#define TOUCH_READ_Z2 0x00C8
+#define TOUCH_SPI_FAILSAFE_LIMIT 5000U
 
 static unsigned int touch_is_held;
 
 static unsigned int touch_transfer(unsigned int value)
 {
-    unsigned int poll_count;
+    unsigned int failsafe;
 
     S0SPDR = value;
-    poll_count = 0U;
+    failsafe = 0U;
 
     while (((S0SPSR & 0x80) == 0) &&
-           (poll_count < TOUCH_POLL_LIMIT)) {
+           (failsafe < TOUCH_SPI_FAILSAFE_LIMIT)) {
         /* Wait for the SPI transfer to finish. */
-        poll_count++;
+        failsafe++;
     }
 
-    if (poll_count >= TOUCH_POLL_LIMIT) {
+    if (failsafe >= TOUCH_SPI_FAILSAFE_LIMIT) {
         return 0U;
     }
 
@@ -81,7 +82,7 @@ touch_command_t touch_input_command_from_pixel(unsigned int x,
             return TOUCH_DND;
         }
 
-        return TOUCH_LIGHT_TEST;
+        return TOUCH_HOUSE_LIGHTS;
     }
 
     return TOUCH_NONE;
@@ -90,6 +91,8 @@ touch_command_t touch_input_command_from_pixel(unsigned int x,
 touch_command_t touch_input_read_command(void)
 {
     unsigned int raw_pressure;
+    unsigned int raw_z1;
+    unsigned int raw_z2;
     unsigned int raw_x;
     unsigned int raw_y;
     unsigned int pixel_x;
@@ -98,7 +101,10 @@ touch_command_t touch_input_read_command(void)
     unsigned int temporary;
 #endif
 
-    raw_pressure = touch_read_value(TOUCH_READ_Z1);
+    /* Lab 6 relative-pressure calculation using both TSC2046 channels. */
+    raw_z1 = touch_read_value(TOUCH_READ_Z1);
+    raw_z2 = touch_read_value(TOUCH_READ_Z2);
+    raw_pressure = raw_z1 + 255U - raw_z2;
 
     if (raw_pressure < TOUCH_PRESSURE_MIN_RAW) {
         touch_is_held = 0U;
