@@ -15,6 +15,9 @@ Not Disturb with a missed-guest counter.
 ----------------
 
 All code under src.
+All touchscreen checked. However, due to the touch-LCD mapping, the touch position
+might be different to the button shapes. (We measured from one board, but we cannot
+test on all the board)
 
 3. SYSTEM ARCHITECTURE
 ----------------------
