@@ -1,15 +1,11 @@
-//Crude millisecond delay function.
-
-//This should be done with a timer, but isn't
-//so that we don't give away any hints for
-//lab 6!
+/* Reused Lab 6 blocking delay for LCD and SDRAM initialization only. */
 
 void mdelay (unsigned int ms) {                     
   unsigned int i, j;
   unsigned int max = 0xFFF;
   
   for (i = 0; i < ms; i++) {
-		//Delay approx 1ms
+		/* Delay approximately 1 ms. */
 		for (j = 0; j < max; j++);
 	}
 }

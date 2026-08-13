@@ -1,3 +1,4 @@
+/* Owns routines, sensor-driven rules and per-feature manual overrides. */
 #include "app_logic.h"
 #include "config.h"
 #include "inputs/light_sensor.h"
@@ -31,10 +32,10 @@ static routine_mode_t routine_from_minutes(unsigned long demo_minutes)
 void app_state_init(app_state_t *state)
 {
     state->demo_minutes = DEMO_START_MINUTES;
-    state->light_raw = LIGHT_SIMULATED_MEDIUM;
+    state->light_raw = 0U;
     state->room_temperature_c = TARGET_TEMPERATURE_C;
     state->target_temperature_c = TARGET_TEMPERATURE_C;
-    state->light_level = LIGHT_LEVEL_MEDIUM;
+    state->light_level = LIGHT_LEVEL_DARK;
     state->heating_mode = HVAC_COMFORTABLE;
     state->routine = routine_from_minutes(state->demo_minutes);
     state->blind_1 = BLIND_MID;

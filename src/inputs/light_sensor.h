@@ -7,8 +7,6 @@
 
 void light_sensor_init(void);
 unsigned int light_sensor_read_raw(void);
-void light_sensor_set_simulated_raw(unsigned int raw_value);
-void light_sensor_next_simulated_level(void);
 unsigned int light_sensor_thresholds_valid(unsigned int dark_max_raw,
                                            unsigned int bright_min_raw);
 light_level_t light_sensor_classify_raw(unsigned int raw_value,

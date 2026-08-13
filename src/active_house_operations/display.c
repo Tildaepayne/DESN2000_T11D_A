@@ -1,3 +1,4 @@
+/* Draws the project dashboard and restores it after Doorbell Disco. */
 #include "display.h"
 #include "../lcd/lcd_hw.h"
 #include "../lcd/lcd_grph.h"

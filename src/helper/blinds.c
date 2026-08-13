@@ -1,3 +1,4 @@
+/* Converts blind states to the two physical RGB indicator outputs. */
 #include "../lpc24xx.h"
 #include "blinds.h"
 

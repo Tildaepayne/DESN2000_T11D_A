@@ -1,0 +1,10 @@
+.\output\app_logic.o: src\app_logic.c
+.\output\app_logic.o: src\app_logic.h
+.\output\app_logic.o: src\app_state.h
+.\output\app_logic.o: src\config.h
+.\output\app_logic.o: src\inputs/light_sensor.h
+.\output\app_logic.o: src\helper/blinds.h
+.\output\app_logic.o: src\active_house_operations/heating_cooling.h
+.\output\app_logic.o: src\active_house_operations/morning_routine.h
+.\output\app_logic.o: src\active_house_operations/evening_routine.h
+.\output\app_logic.o: src\active_house_operations/do_not_disturb.h

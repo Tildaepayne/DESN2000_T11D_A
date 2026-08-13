@@ -1,3 +1,4 @@
+/* Initializes the platform and owns the application superloop. */
 #include "main.h"
 #include "config.h"
 #include "app_state.h"
@@ -46,17 +47,21 @@ int main(void)
     display_init();
     touch_input_init();
 
+    /* Timer 0 must run before the doorbell ISR uses it for debounce timing. */
+    timebase_init();
     doorbell_button_init();
     smart_plug_button_init();
     light_sensor_init();
     dial_temp_init();
     audio_init();
-    timebase_init();
     blinds_init();
     doorbell_disco_init();
     house_lights_init();
 
     app_state_init(&state);
+    light_raw = light_sensor_read_raw();
+    room_temperature_c = dial_temp_read_celsius();
+    app_update_sensors(&state, light_raw, room_temperature_c);
     last_display_ms = 0U;
     last_house_lights_on = 2U;
     blinds_show(state.blind_1, state.blind_2);
@@ -77,7 +82,7 @@ int main(void)
             app_toggle_smart_plug(&state);
         }
 
-        if (doorbell_button_pressed_edge(now_ms) != 0U) {
+        if (doorbell_button_take_press() != 0U) {
             app_record_doorbell(&state);
 
             if (do_not_disturb_allows_chime(&state) != 0U) {

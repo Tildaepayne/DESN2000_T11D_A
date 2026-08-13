@@ -14,7 +14,7 @@
 #ifndef __LPC246x_H
 #define __LPC246x_H
 
-//Fix my clock setup!!!
+/* Core and peripheral clocks are configured by the startup code. */
 #define Fcclk	72000000
 #define Fpclk	(Fcclk / 2)
 

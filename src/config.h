@@ -1,23 +1,11 @@
 #ifndef DESN2000_CONFIG_H
 #define DESN2000_CONFIG_H
 
-/*
- * Use the real AD0.1 driver. NyanSim supplies its light control through the
- * same ADC channel, so this path tests the same call used by the real board.
- * Change this to 1 only when an injected software value is required.
- */
-#ifndef LIGHT_SENSOR_SIMULATION
-#define LIGHT_SENSOR_SIMULATION 0
-#endif
-
 /* Raw ADC thresholds. Replace these after a real board calibration. */
 #define LIGHT_DARK_MAX_RAW       300U
 #define LIGHT_BRIGHT_MIN_RAW     700U
-#define LIGHT_SIMULATED_DARK     150U
-#define LIGHT_SIMULATED_MEDIUM   500U
-#define LIGHT_SIMULATED_BRIGHT   850U
 
-/* The onboard P0.25 / AD0.2 dial represents room temperature. */
+/* The red P0.25 / AD0.2 potentiometer represents room temperature. */
 #define ROOM_TEMPERATURE_MIN_C   16U
 #define ROOM_TEMPERATURE_MAX_C   30U
 #define TARGET_TEMPERATURE_C     22U

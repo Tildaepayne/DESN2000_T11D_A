@@ -1,3 +1,4 @@
+/* Maps the red AD0.2 potentiometer to the simulated room temperature. */
 #include "../lpc24xx.h"
 #include "../config.h"
 #include "dial_temp.h"
@@ -9,7 +10,7 @@ static unsigned int previous_dial_raw = DIAL_SAFE_START_RAW;
 
 void dial_temp_init(void)
 {
-    /* The onboard potentiometer is connected to P0.25 / AD0.2. */
+    /* The red temperature potentiometer is connected to P0.25 / AD0.2. */
     PCONP |= 0x00001000;
     PINSEL1 &= 0xFFF3FFFF;
     PINSEL1 |= 0x00040000;

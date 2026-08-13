@@ -1,3 +1,4 @@
+/* Provides the shared free-running 1 us Timer0 timebase. */
 #include "../lpc24xx.h"
 #include "timebase.h"
 

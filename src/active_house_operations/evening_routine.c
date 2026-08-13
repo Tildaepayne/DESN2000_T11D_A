@@ -1,3 +1,4 @@
+/* Applies Evening defaults without overwriting manual feature states. */
 #include "evening_routine.h"
 
 void evening_routine_apply(app_state_t *state)

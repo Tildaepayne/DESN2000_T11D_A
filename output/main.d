@@ -1,0 +1,17 @@
+.\output\main.o: src\main.c
+.\output\main.o: src\main.h
+.\output\main.o: src\config.h
+.\output\main.o: src\app_state.h
+.\output\main.o: src\app_logic.h
+.\output\main.o: src\inputs/light_sensor.h
+.\output\main.o: src\inputs/dial_temp.h
+.\output\main.o: src\inputs/doorbell_button.h
+.\output\main.o: src\inputs/smart_plug_button.h
+.\output\main.o: src\inputs/touch_input.h
+.\output\main.o: src\helper/timebase.h
+.\output\main.o: src\helper/audio.h
+.\output\main.o: src\helper/blinds.h
+.\output\main.o: src\active_house_operations/display.h
+.\output\main.o: src\active_house_operations/do_not_disturb.h
+.\output\main.o: src\active_house_operations/doorbell_disco.h
+.\output\main.o: src\active_house_operations/house_lights.h

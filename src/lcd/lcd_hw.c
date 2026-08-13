@@ -132,8 +132,7 @@ lcd_hw_init(void)
   PINSEL10 = 0;
   PINSEL0  = (PINSEL0 & 0xFFF000FF) | 0x00055500;
   PINSEL3  = (PINSEL3 & 0xF00000FF) | 0x05555500; 
-	//disabled LCDDVD[19], bit 4 of 5 of 2nd red pixel on bus
-	//this screws with EINT3 and hence breaks GPIO interrupts
+	/* Keep LCDD19 disabled because its pin function conflicts with EINT3. */
   PINSEL4  = (PINSEL4 & 0xF0300000) | 0x014FFFFF; 
   PINSEL9  = (PINSEL9 & 0xF0FFFFFF) | 0x0A000000;
   
@@ -150,7 +149,7 @@ lcd_hw_init(void)
 static void
 lcd_display_init(void)
 {  
-  //This all should have been documented....! See Section 8 in the SSD1289 manual if you dare.
+  /* SSD1289 panel initialization sequence; see datasheet Section 8. */
   writeToReg (0x00,0x0001);
   mdelay(20);
   writeToReg (0x03,0xA2A4);
@@ -280,7 +279,7 @@ lcd_ctrl_init(tLcdParams* pParams)
   }
 
   // panel clock divisor, lower bits
-  regValue |=  ((13)-2)&0x0F;  // TODO: should be calculated from fcclk
+  regValue |=  ((13)-2)&0x0F;  /* Lab 6 panel-clock divisor. */
 
   LCD_POL = regValue;
 

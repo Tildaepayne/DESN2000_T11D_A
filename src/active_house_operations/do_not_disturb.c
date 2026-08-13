@@ -1,3 +1,4 @@
+/* Owns the DND state and doorbell-chime permission decision. */
 #include "do_not_disturb.h"
 
 void do_not_disturb_toggle(app_state_t *state)

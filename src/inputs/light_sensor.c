@@ -1,17 +1,14 @@
+/* Reads the hardware light sensor on AD0.1 and classifies its raw value. */
 #include "../lpc24xx.h"
 #include "../config.h"
 #include "light_sensor.h"
 
 #define LIGHT_ADC_POLL_LIMIT 100000U
 
-static unsigned int simulated_raw_value = LIGHT_SIMULATED_MEDIUM;
-#if LIGHT_SENSOR_SIMULATION == 0
 static unsigned int previous_real_raw_value;
-#endif
 
 void light_sensor_init(void)
 {
-#if LIGHT_SENSOR_SIMULATION == 0
     /* Power the ADC. */
     PCONP |= 0x00001000;
 
@@ -24,14 +21,10 @@ void light_sensor_init(void)
     /* Polling is used, so ADC interrupts remain disabled. */
     AD0INTEN = 0;
     AD0CR = 0x00200302;
-#endif
 }
 
 unsigned int light_sensor_read_raw(void)
 {
-#if LIGHT_SENSOR_SIMULATION == 1
-    return simulated_raw_value;
-#else
     unsigned long result;
     unsigned int poll_count;
 
@@ -56,25 +49,6 @@ unsigned int light_sensor_read_raw(void)
     result = result & 0x000003FF;
     previous_real_raw_value = (unsigned int)result;
     return previous_real_raw_value;
-#endif
-}
-
-void light_sensor_set_simulated_raw(unsigned int raw_value)
-{
-    if (raw_value <= LIGHT_SENSOR_ADC_MAX_RAW) {
-        simulated_raw_value = raw_value;
-    }
-}
-
-void light_sensor_next_simulated_level(void)
-{
-    if (simulated_raw_value == LIGHT_SIMULATED_DARK) {
-        simulated_raw_value = LIGHT_SIMULATED_MEDIUM;
-    } else if (simulated_raw_value == LIGHT_SIMULATED_MEDIUM) {
-        simulated_raw_value = LIGHT_SIMULATED_BRIGHT;
-    } else {
-        simulated_raw_value = LIGHT_SIMULATED_DARK;
-    }
 }
 
 unsigned int light_sensor_thresholds_valid(unsigned int dark_max_raw,

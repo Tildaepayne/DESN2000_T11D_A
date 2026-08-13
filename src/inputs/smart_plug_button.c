@@ -1,3 +1,4 @@
+/* Polls and debounces the P0.11 smart-plug override button. */
 #include "../lpc24xx.h"
 #include "../config.h"
 #include "smart_plug_button.h"

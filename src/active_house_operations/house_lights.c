@@ -1,3 +1,4 @@
+/* Drives QVGA house-light LEDs 1-4 through I2C0 and the PCA9532. */
 #include "house_lights.h"
 #include "../lpc24xx.h"
 

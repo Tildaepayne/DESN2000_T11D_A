@@ -1,3 +1,4 @@
+/* Plays the doorbell song while temporarily driving the shared LED ladder. */
 #include "doorbell_disco.h"
 #include "../lpc24xx.h"
 #include "../helper/audio.h"

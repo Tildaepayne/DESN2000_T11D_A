@@ -1,3 +1,4 @@
+/* Reads TSC2046 touches over SPI0 and maps them to application commands. */
 #include "../lpc24xx.h"
 #include "../config.h"
 #include "touch_input.h"

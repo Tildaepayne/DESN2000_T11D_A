@@ -1,3 +1,4 @@
+/* Applies Morning defaults without overwriting manual feature states. */
 #include "morning_routine.h"
 
 void morning_routine_apply(app_state_t *state)

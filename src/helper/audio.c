@@ -1,3 +1,4 @@
+/* Generates blocking DAC tones using the shared Timer0 timebase. */
 #include "../lpc24xx.h"
 #include "audio.h"
 #include "timebase.h"

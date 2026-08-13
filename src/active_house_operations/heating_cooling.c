@@ -1,3 +1,4 @@
+/* Selects the displayed HVAC state from temperature and deadband. */
 #include "heating_cooling.h"
 
 heating_mode_t heating_cooling_choose_mode(unsigned int room_temperature_c,

@@ -3,6 +3,6 @@
 
 void doorbell_button_init(void);
 unsigned int doorbell_button_read(void);
-unsigned int doorbell_button_pressed_edge(unsigned long now_ms);
+unsigned int doorbell_button_take_press(void);
 
 #endif
