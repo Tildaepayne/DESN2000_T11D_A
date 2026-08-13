@@ -13,6 +13,22 @@
 
 static unsigned int touch_is_held;
 
+static unsigned int touch_scale_axis(unsigned int raw_value,
+                                     unsigned int raw_min,
+                                     unsigned int raw_max,
+                                     unsigned int pixel_max)
+{
+    if (raw_value <= raw_min) {
+        return 0U;
+    }
+
+    if (raw_value >= raw_max) {
+        return pixel_max;
+    }
+
+    return ((raw_value - raw_min) * pixel_max) / (raw_max - raw_min);
+}
+
 static unsigned int touch_point_in_button(unsigned int x,
                                           unsigned int y,
                                           unsigned int x0,
@@ -141,12 +157,6 @@ touch_command_t touch_input_read_command(void)
     raw_x = touch_read_value(TOUCH_READ_X);
     raw_y = touch_read_value(TOUCH_READ_Y);
 
-    if ((raw_x < 8U) || (raw_y < 8U) ||
-        (raw_x > 247U) || (raw_y > 247U)) {
-        touch_is_held = 0U;
-        return TOUCH_NONE;
-    }
-
     if (touch_is_held != 0U) {
         return TOUCH_NONE;
     }
@@ -167,8 +177,14 @@ touch_command_t touch_input_read_command(void)
     raw_y = 255U - raw_y;
 #endif
 
-    pixel_x = (raw_x * 239U) / 255U;
-    pixel_y = (raw_y * 319U) / 255U;
+    pixel_x = touch_scale_axis(raw_x,
+                               TOUCH_RAW_X_MIN,
+                               TOUCH_RAW_X_MAX,
+                               239U);
+    pixel_y = touch_scale_axis(raw_y,
+                               TOUCH_RAW_Y_MIN,
+                               TOUCH_RAW_Y_MAX,
+                               319U);
 
     return touch_input_command_from_pixel(pixel_x, pixel_y);
 }

@@ -24,10 +24,17 @@
 #define DISPLAY_REFRESH_MS       250U
 #define BUTTON_DEBOUNCE_MS       100U
 
-/* Touch calibration switches. Change only after observing the board. */
+/*
+ * Touch calibration measured on the physical QVGA panel using targets at
+ * (20,70), (219,70) and (20,280). Limits are applied after axis transforms.
+ */
 #define TOUCH_PRESSURE_MIN_RAW   16U
 #define TOUCH_SWAP_XY            0
 #define TOUCH_INVERT_X           0
 #define TOUCH_INVERT_Y           0
+#define TOUCH_RAW_X_MIN          8U
+#define TOUCH_RAW_X_MAX          238U
+#define TOUCH_RAW_Y_MIN          38U
+#define TOUCH_RAW_Y_MAX          239U
 
 #endif
