@@ -4,6 +4,7 @@
 #include "../lcd/lcd_grph.h"
 #include "../lcd/lcd_cfg.h"
 #include "../lcd/sdram.h"
+#include "../ui_layout.h"
 
 static void display_number(unsigned short x,
                            unsigned short y,
@@ -148,15 +149,17 @@ static void display_draw_static(void)
     lcd_putString(10, 224, (unsigned char *)"DND:");
     lcd_putString(160, 224, (unsigned char *)"MISSED:");
 
-    display_button(0, 250, 78, 282,
+    display_button(UI_PLUG_X0, UI_PLUG_Y0, UI_PLUG_X1, UI_PLUG_Y1,
                    (unsigned char *)"PLUG", CYAN);
-    display_button(80, 250, 158, 282,
+    display_button(UI_BLIND_X0, UI_BLIND_Y0, UI_BLIND_X1, UI_BLIND_Y1,
                    (unsigned char *)"BLIND", YELLOW);
-    display_button(160, 250, 239, 282,
+    display_button(UI_AUTO_RESET_X0, UI_AUTO_RESET_Y0,
+                   UI_AUTO_RESET_X1, UI_AUTO_RESET_Y1,
                    (unsigned char *)"AUTO RESET", LIGHT_GRAY);
-    display_button(0, 285, 118, 319,
+    display_button(UI_DND_X0, UI_DND_Y0, UI_DND_X1, UI_DND_Y1,
                    (unsigned char *)"DND", MAGENTA);
-    display_button(120, 285, 239, 319,
+    display_button(UI_HOUSE_LIGHT_X0, UI_HOUSE_LIGHT_Y0,
+                   UI_HOUSE_LIGHT_X1, UI_HOUSE_LIGHT_Y1,
                    (unsigned char *)"HOUSE LIGHT", GREEN);
 }
 

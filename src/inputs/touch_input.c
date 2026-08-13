@@ -1,6 +1,7 @@
 /* Reads TSC2046 touches over SPI0 and maps them to application commands. */
 #include "../lpc24xx.h"
 #include "../config.h"
+#include "../ui_layout.h"
 #include "touch_input.h"
 
 #define TOUCH_CS 0x00100000
@@ -11,6 +12,21 @@
 #define TOUCH_SPI_FAILSAFE_LIMIT 5000U
 
 static unsigned int touch_is_held;
+
+static unsigned int touch_point_in_button(unsigned int x,
+                                          unsigned int y,
+                                          unsigned int x0,
+                                          unsigned int y0,
+                                          unsigned int x1,
+                                          unsigned int y1)
+{
+    if ((x >= x0) && (x <= x1) &&
+        (y >= y0) && (y <= y1)) {
+        return 1U;
+    }
+
+    return 0U;
+}
 
 static unsigned int touch_transfer(unsigned int value)
 {
@@ -66,23 +82,33 @@ void touch_input_init(void)
 touch_command_t touch_input_command_from_pixel(unsigned int x,
                                                 unsigned int y)
 {
-    if ((y >= 250U) && (y <= 282U)) {
-        if (x < 80U) {
-            return TOUCH_SMART_PLUG;
-        }
+    if (touch_point_in_button(x, y,
+                              UI_PLUG_X0, UI_PLUG_Y0,
+                              UI_PLUG_X1, UI_PLUG_Y1) != 0U) {
+        return TOUCH_SMART_PLUG;
+    }
 
-        if (x < 160U) {
-            return TOUCH_BLINDS;
-        }
+    if (touch_point_in_button(x, y,
+                              UI_BLIND_X0, UI_BLIND_Y0,
+                              UI_BLIND_X1, UI_BLIND_Y1) != 0U) {
+        return TOUCH_BLINDS;
+    }
 
+    if (touch_point_in_button(x, y,
+                              UI_AUTO_RESET_X0, UI_AUTO_RESET_Y0,
+                              UI_AUTO_RESET_X1, UI_AUTO_RESET_Y1) != 0U) {
         return TOUCH_RETURN_AUTO;
     }
 
-    if (y >= 285U) {
-        if (x < 120U) {
-            return TOUCH_DND;
-        }
+    if (touch_point_in_button(x, y,
+                              UI_DND_X0, UI_DND_Y0,
+                              UI_DND_X1, UI_DND_Y1) != 0U) {
+        return TOUCH_DND;
+    }
 
+    if (touch_point_in_button(x, y,
+                              UI_HOUSE_LIGHT_X0, UI_HOUSE_LIGHT_Y0,
+                              UI_HOUSE_LIGHT_X1, UI_HOUSE_LIGHT_Y1) != 0U) {
         return TOUCH_HOUSE_LIGHTS;
     }
 
