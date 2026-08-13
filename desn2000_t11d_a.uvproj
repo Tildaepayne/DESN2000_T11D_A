@@ -473,6 +473,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\active_house_operations\doorbell_disco.c</FilePath>
             </File>
+            <File>
+              <FileName>house_lights.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\active_house_operations\house_lights.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
