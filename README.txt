@@ -10,27 +10,17 @@ blinds, an espresso-machine smart plug, house lights, heating/cooling status,
 an interrupt-driven doorbell, a doorbell song with an LED Disco effect, and Do
 Not Disturb with a missed-guest counter.
 
-No 240 V appliance is controlled. The LCD, RGB indicators, QVGA LEDs and other
-low-voltage board outputs safely represent the cottage devices.
-
 
 2. SOURCE STATUS
 ----------------
 
-This README documents only the production source tree under src.
-
-The current source compiles and links with 0 errors and 0 warnings for the
-QVGA Base Board target. Build success does not prove physical hardware
-behaviour. TEMT6000 calibration, calibrated touch-control behaviour, GPIO
-interrupt behaviour, LEDs, audio and LCD recovery still require final board
-tests.
-
+All code under src.
 
 3. SYSTEM ARCHITECTURE
 ----------------------
 
 The application is a single-threaded superloop with one short hardware
-interrupt. There is no RTOS and no dynamic memory.
+interrupt.
 
 The superloop reads Timer0, the AD0.1 light sensor, the AD0.2 red temperature
 potentiometer, the P0.11 smart-plug button and the SPI0 touchscreen. It updates
